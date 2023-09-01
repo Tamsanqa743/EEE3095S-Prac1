@@ -126,25 +126,17 @@ int main(void)
     /* USER CODE BEGIN 3 */
 
     // TODO: Check button PA0; if pressed, change timer delay
-    // uint8_t pressed = GPIOA -> IDR & GPIO_IDR_0;
-    //delay(1000);
+   
     if(!(LL_GPIO_ReadInputPort(Button0_GPIO_Port) & Button0_Pin)){
 
       if(delay_state == 0){
 
           delay_state = 1; // set state to 0
           htim16.Init.Period = 500-1;
-          // TIM16 -> CR1 &= ~TIM_CR1_CEN;
-          // TIM16 -> PSC = 60; // set prescaler
-          // TIM16 -> ARR = 64515;
-          // TIM16 -> CR1 |= TIM_CR1_CEN;
       }
       else{
           delay_state = 0; // set state to 
           htim16.Init.Period = 1000-1;
-          // TIM16 -> PSC = 39;
-          // TIM16 -> ARR = 65484;
-          // MX_TIM16_Init();
           }
       HAL_TIM_Base_Init(&htim16);
 
